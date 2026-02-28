@@ -1,0 +1,353 @@
+{
+  "datasets": [
+    {
+      "name": "b3a9ad4e",
+      "displayName": "Healthcare Performance Metrics Overview",
+      "queryLines": [
+        "SELECT *\r\n",
+        "FROM healthcare_analytics.gold_kpi_scorecard;"
+      ]
+    },
+    {
+      "name": "428ae8c0",
+      "displayName": "Healthcare Client Performance Summary Dataset",
+      "queryLines": [
+        "SELECT *\r\n",
+        "FROM healthcare_analytics.gold_client_scorecard\r\n",
+        "ORDER BY active_members DESC;"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "f2762030",
+      "displayName": "Dashboards of Healthcare",
+      "layout": [
+        {
+          "widget": {
+            "name": "client-scorecard",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "428ae8c0",
+                  "fields": [
+                    {
+                      "name": "client_name",
+                      "expression": "`client_name`"
+                    },
+                    {
+                      "name": "active_members",
+                      "expression": "`active_members`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "title": "                                                                                 CLIENT SCORECARD"
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "client_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "active_members",
+                  "axis": {
+                    "hideTitle": false,
+                    "hideLabels": false,
+                    "hideGrid": true
+                  },
+                  "format": {
+                    "type": "number-plain",
+                    "abbreviation": "compact",
+                    "decimalPlaces": {
+                      "type": "max",
+                      "places": 2
+                    },
+                    "significantFigures": {
+                      "type": "all"
+                    },
+                    "hideGroupSeparator": true
+                  },
+                  "scale": {
+                    "type": "quantitative",
+                    "reverse": false
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 11,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "total-active-numbers",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "b3a9ad4e",
+                  "fields": [
+                    {
+                      "name": "median(total_active_members)",
+                      "expression": "MEDIAN(`total_active_members`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Active Members"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "median(total_active_members)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "total-completed-sessions",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "b3a9ad4e",
+                  "fields": [
+                    {
+                      "name": "median(total_completed_sessions)",
+                      "expression": "MEDIAN(`total_completed_sessions`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Completed Sessions"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "median(total_completed_sessions)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "no-show-percent",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "b3a9ad4e",
+                  "fields": [
+                    {
+                      "name": "no_show_rate_percent",
+                      "expression": "`no_show_rate_percent`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "No-Show Rate (%)"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "no_show_rate_percent"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "ticket-resolution-rate-percent",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "b3a9ad4e",
+                  "fields": [
+                    {
+                      "name": "ticket_resolution_rate_percent",
+                      "expression": "`ticket_resolution_rate_percent`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Ticket Resolution Rate(%)"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "ticket_resolution_rate_percent"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "full-table-view-client-scorecard",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "428ae8c0",
+                  "fields": [
+                    {
+                      "name": "client_id",
+                      "expression": "`client_id`"
+                    },
+                    {
+                      "name": "client_name",
+                      "expression": "`client_name`"
+                    },
+                    {
+                      "name": "segment",
+                      "expression": "`segment`"
+                    },
+                    {
+                      "name": "status",
+                      "expression": "`status`"
+                    },
+                    {
+                      "name": "active_members",
+                      "expression": "`active_members`"
+                    },
+                    {
+                      "name": "completed_sessions",
+                      "expression": "`completed_sessions`"
+                    },
+                    {
+                      "name": "no_show_rate_percent",
+                      "expression": "`no_show_rate_percent`"
+                    },
+                    {
+                      "name": "ticket_resolution_rate_percent",
+                      "expression": "`ticket_resolution_rate_percent`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "                                                                                     Full Table View for the Client Scorecard"
+              },
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "client_id"
+                  },
+                  {
+                    "fieldName": "client_name"
+                  },
+                  {
+                    "fieldName": "segment"
+                  },
+                  {
+                    "fieldName": "status"
+                  },
+                  {
+                    "fieldName": "active_members"
+                  },
+                  {
+                    "fieldName": "completed_sessions"
+                  },
+                  {
+                    "fieldName": "no_show_rate_percent"
+                  },
+                  {
+                    "fieldName": "ticket_resolution_rate_percent"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 8,
+            "width": 12,
+            "height": 16
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
