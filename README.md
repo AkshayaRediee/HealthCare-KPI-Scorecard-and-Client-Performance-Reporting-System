@@ -4,9 +4,6 @@
 
 This project demonstrates the design and implementation of a healthcare analytics reporting system built in **Databricks** using a **Bronze–Silver–Gold (Medallion) architecture**.
 
-
-This project demonstrates the design and implementation of a healthcare analytics reporting system built in **Databricks** using a **Bronze–Silver–Gold (Medallion) architecture**.
-
 The objective was to simulate how a data team supports:
 
 - Operational KPI tracking
